@@ -18,18 +18,17 @@ namespace PixelDriverProblem
 
         public void SetPixel(int x, int y)
         {
-            var blockColumn = GetBlockColumn(x);
-            var blockRow = GetBlockRow(y);
-
             int pixelColumn = GetPixelColumn(x);
             int pixelRow= GetPixelRow(y);
 
             int pixelOnValue = GetPixelValue(pixelRow, pixelColumn);
 
+            var blockColumn = GetBlockColumn(x);
+            var blockRow = GetBlockRow(y);
+
             var targetBlock = drivenScreen.GetBlock(blockColumn, blockRow);
 
             drivenScreen.SetBlock(blockColumn, blockRow, (targetBlock + pixelOnValue));
-
         }
 
         public int GetBlockColumn(int xValue)
@@ -55,7 +54,6 @@ namespace PixelDriverProblem
         public int GetPixelValue(int row, int column)
         {
             var result = ((2*row) + column);
-
            return (int)Math.Pow(2, result);
         }
     }

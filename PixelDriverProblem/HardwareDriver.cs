@@ -3,14 +3,6 @@ using System.Threading.Tasks;
 
 namespace PixelDriverProblem
 {
-    public interface IScreenDriver
-    {
-        int GetBlock(int n, int m);
-        void SetBlock(int n, int m, int state);
-        int RowsPerBlock { get; }
-        int ColumnsPerBlock { get; }
-    }
-
     public class HardwareDriver : IScreenDriver
     {
         private readonly Block[,] screenBlocks;
@@ -21,7 +13,9 @@ namespace PixelDriverProblem
 
             screenBlocks = new Block[gridSize, gridSize];
 
-            Parallel.For(0, gridSize, i =>
+            Parallel.For(0, 
+                gridSize, 
+                i =>
             {
                 for (int j = 0; j < gridSize; j++)
                 {
@@ -81,19 +75,5 @@ namespace PixelDriverProblem
                 return screenBlocks;
             }
         }
-    }
-
-    public class Block
-    {
-        public Block(int N, int M, int Status)
-        {
-            this.Status = Status;
-            this.M = M;
-            this.N = N;            
-        }
-
-        public int N { get; private set; }
-        public int M { get; private set; }
-        public int Status { get;  set; }
     }
 }

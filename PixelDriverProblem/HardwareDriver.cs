@@ -42,10 +42,10 @@ namespace PixelDriverProblem
             if (doesBlockExist(n, m))
             {
                 TheBlockGrid[n, m].Status = state;
-                Console.WriteLine(string.Format("The state of the block at [{0},{1}] has been set to {2}",n,m, state));
+                Console.WriteLine(string.Format("The state of the block at [{0},{1}] has been set to {2}", n, m, state));
+                return;
             }
-            else
-                ThrowIndexOutOfRange(n, m);
+            ThrowIndexOutOfRange(n, m);
         }
 
         public int RowsPerBlock
